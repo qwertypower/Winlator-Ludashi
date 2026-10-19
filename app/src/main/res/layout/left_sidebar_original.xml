@@ -661,6 +661,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <!-- WFG runs in the Vulkan renderer only: hidden with EGL/DisplayX. -->
+                <LinearLayout
+                    android:id="@+id/LLWfgSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="22dp">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -735,10 +742,10 @@
                         android:textColor="#99FFFFFF"
                         android:textSize="11sp" />
                 </LinearLayout>
+                </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
                     android:text="HUD"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"

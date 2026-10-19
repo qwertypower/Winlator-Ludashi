@@ -1689,7 +1689,6 @@ public class XServerDisplayActivity extends AppCompatActivity {
         Spinner  spTarget  = findViewById(R.id.SPWfgTarget);
         View     qualityRow = findViewById(R.id.LLWfgQualityRow);
         View     targetRow  = findViewById(R.id.LLWfgTargetRow);
-        TextView tvNote    = findViewById(R.id.TVWfgNote);
         if (swWfg == null || spQuality == null || spTarget == null) return;
 
         // Motion is analysed at this many pixels on the shorter side of the frame.
@@ -1707,15 +1706,9 @@ public class XServerDisplayActivity extends AppCompatActivity {
 
         final VulkanXServerView vk = xServerView instanceof VulkanXServerView
                 ? (VulkanXServerView) xServerView : null;
-        if (vk == null) {
-            swWfg.setChecked(false);
-            swWfg.setEnabled(false);
-            if (qualityRow != null) qualityRow.setVisibility(View.GONE);
-            if (targetRow != null) targetRow.setVisibility(View.GONE);
-            if (tvNote != null)
-                tvNote.setText("WFG runs in the Vulkan renderer. Turn off the native (EGL/DisplayX) renderer for this container to use it.");
-            return;
-        }
+        View wfgSection = findViewById(R.id.LLWfgSection);
+        if (wfgSection != null) wfgSection.setVisibility(vk != null ? View.VISIBLE : View.GONE);
+        if (vk == null) return;  // EGL/DisplayX: no frame generation
 
         int quality = parseExtra("wfgQuality", 0);
         int target  = parseExtra("wfgTarget", 0);
